@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SantaRosaMap.Views.MainPage"
+             xmlns:maps="clr-namespace:SantaRosaMap.Renderers"
+             Title="{Binding Title}"
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <Grid Padding="10">
+        <maps:CustomMap HorizontalOptions="FillAndExpand"
+                        Margin="-10"
+                        x:Name="maps"
+                        MapPins="{Binding MapPins}"
+                        VerticalOptions="FillAndExpand"
+         
+         />
+        <Button Image="ic_search_black_36dp.png"
+                Command="{Binding SearchCommand}"
+                WidthRequest="60"
+                BackgroundColor="White"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="EndAndExpand"/>
+    </Grid>
+</ContentPage>

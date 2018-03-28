@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Title="{Binding Title}"
+             xmlns:behavior="clr-namespace:SantaRosaMap.Behaviors"
+             xmlns:converter="clr-namespace:SantaRosaMap.Converters"
+             x:Class="SantaRosaMap.Views.SearchPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ReverseBool x:Key="revBool"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <SearchBar Text="{Binding SearchText}"
+                   Placeholder="Search here ..."
+                   HeightRequest="52"
+                   >
+            <SearchBar.Behaviors>
+                <behavior:SearchBehavior Command="{Binding SearchCommand}"/>
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <ListView ItemsSource="{Binding SearchList}"
+                  Grid.Row="1"
+                  HasUnevenRows="True"
+                  >
+            <ListView.Behaviors>
+                <behavior:ListViewRefreshBehavior TappedCommand="{Binding TappedCommand}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ffImage:CachedImage Grid.RowSpan="3"
+                                   Margin="2"
+                                   Source="icon.png"
+                                   
+                                   />
+                            <Label Text="{Binding Label}" FontAttributes="Bold" Grid.Column="1" Grid.Row="0"/>
+                            <Label Text="{Binding Address}" Grid.Column="1" Grid.Row="1"/>
+                            <Label Text="{Binding Barangay, StringFormat='Barangay {0}'}" FontAttributes="Italic" Grid.Column="1" Grid.Row="2"/>
+                        </Grid>
+                    </ViewCell>
+                    <!--<ImageCell ImageSource="icon.png" Text="{Binding Label}" Detail="{Binding Address}"/>-->
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>  
+</ContentPage>
