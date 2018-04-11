@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.5" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.5" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.5" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.6" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.3.6" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.3.6" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.6" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.362" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="2.5.0.122203" />

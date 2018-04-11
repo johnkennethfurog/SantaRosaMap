@@ -9,11 +9,12 @@ namespace SantaRosaMap.CustomControls
     {
         public MapPin()
         {
-
+            SmallImages = "no_image.png";
         }
 
         public string Barangay { get; set; }
         public PinType CustomType { get; set; }
+        public string SmallImages { get; set; }
     }
     public enum PinType
     {

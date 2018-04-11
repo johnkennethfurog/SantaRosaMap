@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:id="@+id/InfoWindowImage"
         android:src="@drawable/santa_rosas_church"
         android:scaleType="centerCrop" />
     <TextView
@@ -21,8 +22,7 @@
         android:textSize="12sp"
         android:ellipsize="end"
         android:layout_marginTop="5sp" />
-
-  <TextView
+    <TextView
         android:id="@+id/InfoWindowSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

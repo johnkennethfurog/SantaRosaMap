@@ -38,7 +38,7 @@
                     <ViewCell>
                         <Grid RowSpacing="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -48,7 +48,9 @@
                             </Grid.RowDefinitions>
                             <ffImage:CachedImage Grid.RowSpan="3"
                                    Margin="2"
-                                   Source="icon.png"
+                                                 ErrorPlaceholder="no_image.png"
+                                                 LoadingPlaceholder="no_image.png"
+                                   Source="{Binding SmallImages}"
                                    
                                    />
                             <Label Text="{Binding Label}" FontAttributes="Bold" Grid.Column="1" Grid.Row="0"/>

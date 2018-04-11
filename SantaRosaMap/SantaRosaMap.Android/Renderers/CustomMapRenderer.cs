@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -38,8 +39,31 @@ namespace SantaRosaMap.Droid.Renderers
                 Android.Views.View view;
 
                 view = inflater.Inflate(Resource.Layout.MapInfoWindow, null);
+
+                var custPin = GetCustomPin(new Position(marker.Position.Latitude,marker.Position.Longitude));
+
                 var infoTitle = view.FindViewById<TextView>(Resource.Id.InfoWindowTitle);
                 var infoSubtitle = view.FindViewById<TextView>(Resource.Id.InfoWindowSubtitle);
+                var infoImage = view.FindViewById<ImageView>(Resource.Id.InfoWindowImage);
+
+
+                if (custPin.SmallImages != "" || custPin.SmallImages == "no_image.png")
+                {
+                    var imgName = custPin.SmallImages.Replace(".jpg", "");
+                    var imgResource = typeof(Resource.Drawable).GetField(imgName);
+
+                    if (imgResource != null)
+                    {
+                        var imgId = (int)imgResource.GetValue(null);
+                        var img = BitmapFactory.DecodeResource(Context.Resources, imgId);
+
+                        infoImage.SetImageBitmap(img);
+                    }
+                }
+                else
+                {
+                    infoImage.Visibility = ViewStates.Gone;
+                }
 
                 if (infoTitle != null)
                 {
@@ -121,7 +145,7 @@ namespace SantaRosaMap.Droid.Renderers
 
         protected override MarkerOptions CreateMarker(Pin pin)
         {
-            var custPin = GetCustomPin(pin);
+            var custPin = GetCustomPin(pin.Position);
 
             var markOption = new MarkerOptions();
             markOption.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
@@ -159,14 +183,14 @@ namespace SantaRosaMap.Droid.Renderers
             }
         }
         
-        MapPin GetCustomPin(Pin pin)
+        MapPin GetCustomPin(Position position)
         {
             var customMap = Element as CustomMap;
             MapPin customPin = null;
             foreach (var mapPin in customMap.MapPins)
             {
                 var _pin = mapPin as MapPin;
-                if (pin.Position.Equals(_pin.Position))
+                if (position.Equals(_pin.Position))
                 {
                     customPin = _pin;
                     break;
