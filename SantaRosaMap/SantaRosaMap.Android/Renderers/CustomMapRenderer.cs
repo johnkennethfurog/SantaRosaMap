@@ -47,7 +47,7 @@ namespace SantaRosaMap.Droid.Renderers
                 var infoImage = view.FindViewById<ImageView>(Resource.Id.InfoWindowImage);
 
 
-                if (custPin.CustomType != CustomControls.PinType.Barangay)
+                if (custPin.SmallImages != MapPin.default_image)
                 {
                     var imgName = custPin.SmallImages.Replace(".jpg", "");
                     var imgResource = typeof(Resource.Drawable).GetField(imgName);

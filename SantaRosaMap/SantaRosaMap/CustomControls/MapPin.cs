@@ -7,9 +7,11 @@ namespace SantaRosaMap.CustomControls
 {
     public class MapPin : Pin
     {
+
+        public const string default_image = "no_image.png";
         public MapPin()
         {
-            SmallImages = "no_image.png";
+            SmallImages = default_image;
         }
 
         public string Barangay { get; set; }
